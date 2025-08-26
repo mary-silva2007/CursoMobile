@@ -1,72 +1,24 @@
-import 'package:flutter/material.dart';
-import 'package:json_web_service_clima/controllers/clima_controller.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:json_web_service_clima/models/clima_model.dart';
 
-class ClimaView extends StatefulWidget{
-  const ClimaView({
-    super.key
-  });
+class ClimaController {
+  final String _apiKey = "90290436d34bb91b4d852afe49197129";
 
-  @override
-  State<StatefulWidget> createState() {
-    return _ClimaViewState();
-  }
-}
-
-class _ClimaViewState extends State<ClimaView>{
-  //atributos
-  final TextEditingController _cidadeController = TextEditingController();
-  ClimaModel? _clima;
-  String? _erro;
-  final ClimaController _climaController = ClimaController();
-
-  //método para busca clima da cidade
-  void _buscar() async{
-    try {
-      final cidade = _cidadeController.text.trim();
-      final resultado = await _climaController.buscarClima(cidade);
-      setState(() {
-        if(resultado != null){
-          _clima = resultado;
-          _erro = null;
-        } else{
-          _clima = null;
-          _erro = "Cidade Não Encontrada";
-        }
-      });
-    } catch (e) {
-      print("Erro ao buscar Cidade: $e");
-    }
-  }
-
-  //build da Tela
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Clima em Tempo Real"),),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: _cidadeController,
-              decoration: InputDecoration(labelText: "Digite uma Cidade"),
-            ),
-            ElevatedButton(onPressed: _buscar, child: Text("Buscar Clima")),
-            SizedBox(height: 10,),
-            Divider(),
-            if(_clima != null) ...[
-              Text("Cidade: ${_clima!.cidade}"),
-              Text("Temperatura: ${_clima!.temperatura} °C"),
-              Text("Descrição: ${_clima!.descricao}")
-            ] else if(_erro != null) ...[
-              Text(_erro!)
-            ] else ...[
-              Text("Procure uma Cidade")
-            ]
-          ],
-        ),
-        ),
+  // método para pegar a informação do CLima de uma cidade
+  // método get
+  Future<ClimaModel?> buscarClima(String cidade) async{
+    final url = Uri.parse(
+      "https://api.openweathermap.org/data/2.5/weather?q=$cidade&appid=$_apiKey&unit=metric&lang=pt_br"
     );
+    final response = await http.get(url);
+    if(response.statusCode ==200){
+      final dados = json.decode(response.body);
+      return ClimaModel.fromJson(dados);
+    }else{
+      return null;
+    }    
   }
 }
+
