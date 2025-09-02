@@ -1,20 +1,20 @@
-import 'package:biblioteca_app/controllers/livro_controller.dart';
-import 'package:biblioteca_app/models/livro_model.dart';
-import 'package:biblioteca_app/views/livros/livros_form_view.dart';
+import 'package:biblioteca_app/controllers/usuario_controller.dart';
+import 'package:biblioteca_app/models/usuario_model.dart';
+import 'package:biblioteca_app/views/usuarios/usuario_form_view.dart';
 import 'package:flutter/material.dart';
 
-class LivroListView extends StatefulWidget {
-  const LivroListView({super.key});
+class UsuarioListView extends StatefulWidget {
+  const UsuarioListView({super.key});
 
   @override
-  State<LivroListView> createState() => _LivroListViewState();
+  State<UsuarioListView> createState() => _UsuarioListViewState();
 }
 
-class istViewState extends State<LivroListView> {
+class _UsuarioListViewState extends State<UsuarioListView> {
   final _buscarField = TextEditingController();
-  List<LivroModel> _livrosFiltrados = [];
-  final _controller = LivroController();
-  List<LivroModel> _livros = [];
+  List<UsuarioModel> _usuariosFiltrados = [];
+  final _controller = UsuarioController();
+  List<UsuarioModel> _usuarios = [];
   bool _carregando = true;
 
   @override
@@ -28,8 +28,8 @@ class istViewState extends State<LivroListView> {
       _carregando = true;
     });
     try {
-      _livros = await _controller.fetchAll();
-      _livrosFiltrados = _livros;
+      _usuarios = await _controller.fetchAll();
+      _usuariosFiltrados = _usuarios;
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -43,20 +43,20 @@ class istViewState extends State<LivroListView> {
   void _filtrar() {
     final busca = _buscarField.text.toLowerCase();
     setState(() {
-      _livrosFiltrados = _livros.where((livro) {
-        return livro.titulo.toLowerCase().contains(busca) ||
-            livro.autor.toLowerCase().contains(busca);
+      _usuariosFiltrados = _usuarios.where((user) {
+        return user.nome.toLowerCase().contains(busca) ||
+            user.email.toLowerCase().contains(busca);
       }).toList();
     });
   }
 
-  void _delete(LivroModel livro) async {
-    if (livro.id == null) return;
+  void _delete(UsuarioModel user) async {
+    if (user.id == null) return;
     final confirme = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Confirma Exclusão"),
-        content: Text("Deseja Realmente Excluir o Livro ${livro.titulo}"),
+        content: Text("Deseja Realmente Excluir o Usuário ${user.nome}"),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
@@ -71,20 +71,20 @@ class istViewState extends State<LivroListView> {
     );
     if (confirme == true) {
       try {
-        await _controller.delete(livro.id!);
+        await _controller.delete(user.id!);
         _load();
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Erro ao excluir livro")),
+          SnackBar(content: Text("Erro ao excluir usuário")),
         );
       }
     }
   }
 
-  void _openForm({LivroModel? livro}) async {
+  void _openForm({UsuarioModel? user}) async {
     final resultado = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LivroFormView(livro: livro)),
+      MaterialPageRoute(builder: (context) => UsuarioFormView(user: user)),
     );
     if (resultado == true) {
       _load();
@@ -102,7 +102,7 @@ class istViewState extends State<LivroListView> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _buscarField,
-                    decoration: InputDecoration(labelText: "Pesquisar Livro"),
+                    decoration: InputDecoration(labelText: "Pesquisar Usuário"),
                     onChanged: (value) => _filtrar(),
                   ),
                 ),
@@ -110,19 +110,19 @@ class istViewState extends State<LivroListView> {
                 Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.all(8),
-                    itemCount: _livrosFiltrados.length,
+                    itemCount: _usuariosFiltrados.length,
                     itemBuilder: (context, index) {
-                      final livro = _livrosFiltrados[index];
+                      final usuario = _usuariosFiltrados[index];
                       return Card(
                         child: ListTile(
                           leading: IconButton(
-                            onPressed: () => _openForm(livro: livro),
+                            onPressed: () => _openForm(user: usuario),
                             icon: Icon(Icons.edit),
                           ),
-                          title: Text(livro.titulo),
-                          subtitle: Text(livro.autor),
+                          title: Text(usuario.nome),
+                          subtitle: Text(usuario.email),
                           trailing: IconButton(
-                            onPressed: () => _delete(livro),
+                            onPressed: () => _delete(usuario),
                             icon: Icon(Icons.delete, color: Colors.red),
                           ),
                         ),

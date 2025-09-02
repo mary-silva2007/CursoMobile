@@ -7,7 +7,7 @@ void main(){
     title: "Biblioteca",
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      primarySwatch: Colors.limeAccent,
+      primarySwatch: Colors.amber,
       useMaterial3: true
     ),
     home: HomeView(),

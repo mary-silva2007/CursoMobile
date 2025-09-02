@@ -26,6 +26,6 @@ class LivroModel {
     id: json["id"].toString(),
     titulo: json["titulo"].toString(), 
     autor: json["autor"].toString(), 
-    disponivel: json["disponivel"] == true ? true : false);//operador ternário para corrigir a booleana
+    disponivel: json["disponivel"] == 1? true : false);//operador ternário para corrigir a booleana
 
 }
