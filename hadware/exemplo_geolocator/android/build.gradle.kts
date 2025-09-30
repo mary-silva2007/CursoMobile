@@ -1,17 +1,3 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        // Gradle do Android
-        classpath 'com.android.tools.build:gradle:7.4.2'
-
-        // 🔥 Plugin do Google Services (Firebase)
-        classpath 'com.google.gms:google-services:4.3.15'
-    }
-}
-
 allprojects {
     repositories {
         google()
