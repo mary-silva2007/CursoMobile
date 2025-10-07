@@ -1,0 +1,64 @@
+/* ===== CORES DA MARCA ===== */
+$cor-primaria: #009B77;   // Verde-esmeralda
+$cor-secundaria: #333333; // Cinza-escuro
+$cor-fundo: #ffffff;      // Branco
+
+/* ===== RESET & GERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: $cor-primaria;
+  border-color: $cor-primaria;
+
+  &:hover {
+    background-color: darken($cor-primaria, 10%);
+    border-color: darken($cor-primaria, 10%);
+  }
+}
+
+/* ===== LINKS ===== */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* ===== CONTAINERS ===== */
+
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}

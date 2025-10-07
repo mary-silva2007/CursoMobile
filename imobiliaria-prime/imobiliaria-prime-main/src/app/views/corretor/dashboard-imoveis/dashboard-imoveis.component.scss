@@ -1,0 +1,203 @@
+.container-fluid {
+  padding: 0 !important; // Remove padding do container-fluid
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+
+  h3 {
+    color: #009b77;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .btn-novo-imovel {
+    background-color: #009b77;
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 1.5rem;
+
+    &:hover {
+      background-color: #007a5f;
+      transform: translateY(-2px);
+    }
+  }
+
+  .card-form {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    animation: fadeIn 0.6s ease;
+
+    h4 {
+      color: #009b77;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1px;
+    }
+
+    .form-control,
+    .form-control[readonly] {
+      border-radius: 10px;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: #009b77;
+        box-shadow: 0 0 0 3px rgba(0, 155, 119, 0.1);
+      }
+    }
+
+    .btn-salvar,
+    .btn-cancelar {
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+
+    .btn-salvar {
+      background-color: #009b77;
+      color: white;
+      border: none;
+
+      &[disabled] {
+        background-color: #aaa;
+        cursor: not-allowed;
+      }
+
+      &:hover:not([disabled]) {
+        background-color: #007a5f;
+      }
+    }
+
+    .btn-cancelar {
+      background-color: #ccc;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #bbb;
+      }
+    }
+  }
+
+  .lista-imoveis {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    .card-imovel {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      background: white;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-body {
+        padding: 1.2rem;
+
+        .card-title {
+          color: #009b77;
+          font-weight: 700;
+        }
+
+        .card-text {
+          color: #666;
+        }
+
+        .btn-editar,
+        .btn-excluir {
+          border-radius: 8px;
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+          margin-right: 0.5rem;
+          cursor: pointer;
+        }
+
+        .btn-editar {
+          background-color: #ffc107;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #e0a800;
+          }
+        }
+
+        .btn-excluir {
+          background-color: #dc3545;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: #c82333;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .lista-imoveis {
+    .card-imovel {
+      max-width: 100%;
+    }
+  }
+}

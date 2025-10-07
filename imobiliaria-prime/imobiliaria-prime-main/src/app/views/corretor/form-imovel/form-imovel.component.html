@@ -1,0 +1,89 @@
+<!-- src/app/views/corretor/form-imovel/form-imovel.component.html -->
+<div class="form-container">
+  <h2>{{ isEditando ? 'Editar Imóvel' : 'Adicionar Novo Imóvel' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Título -->
+    <div class="form-group">
+      <label for="titulo">Título *</label>
+      <input
+        type="text"
+        id="titulo"
+        formControlName="titulo"
+        class="form-control"
+        placeholder="Ex: Apartamento com vista para o mar"
+      />
+    </div>
+
+    <!-- Tipo -->
+    <div class="form-group">
+      <label for="tipo">Tipo *</label>
+      <select id="tipo" formControlName="tipo" class="form-control">
+        <option value="">Selecione o tipo</option>
+        <option *ngFor="let tipo of tiposImovel" [value]="tipo">{{ tipo }}</option>
+      </select>
+    </div>
+
+    <!-- Cidade -->
+    <div class="form-group">
+      <label for="cidade">Cidade *</label>
+      <input
+        type="text"
+        id="cidade"
+        formControlName="cidade"
+        class="form-control"
+        placeholder="Ex: Santos, SP"
+      />
+    </div>
+
+    <!-- Preço -->
+    <div class="form-group">
+      <label for="preco">Preço (R$) *</label>
+      <input
+        type="number"
+        id="preco"
+        formControlName="preco"
+        class="form-control"
+        placeholder="Ex: 750000"
+        min="1"
+      />
+    </div>
+
+    <!-- Descrição -->
+    <div class="form-group">
+      <label for="descricao">Descrição *</label>
+      <textarea
+        id="descricao"
+        formControlName="descricao"
+        class="form-control"
+        rows="4"
+        placeholder="Descreva o imóvel com detalhes..."
+      ></textarea>
+    </div>
+
+    <!-- URL da Imagem -->
+    <div class="form-group">
+      <label for="imagemUrl">URL da Imagem *</label>
+      <input
+        type="text"
+        id="imagemUrl"
+        formControlName="imagemUrl"
+        class="form-control"
+        placeholder="https://exemplo.com/imagem.jpg"
+      />
+      <small class="dica-imagem">
+        Use uma URL pública (ex: Imgur, Google Drive com link público)
+      </small>
+    </div>
+
+    <!-- Botões -->
+    <div class="botoes-form">
+      <button type="button" class="btn-cancelar" (click)="onCancelar()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn-salvar" [disabled]="form.invalid">
+        {{ isEditando ? 'Atualizar Imóvel' : 'Salvar Imóvel' }}
+      </button>
+    </div>
+  </form>
+</div>

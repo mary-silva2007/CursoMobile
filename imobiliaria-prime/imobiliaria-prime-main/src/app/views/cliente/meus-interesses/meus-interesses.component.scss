@@ -1,0 +1,85 @@
+@import 'src/styles.scss';
+
+.pagina-meus-interesses {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  // 👇 Centraliza título e subtítulo
+  .cabecalho {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: $cor-secundaria;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto; // Centraliza o texto dentro do container
+    }
+  }
+
+  // 👇 Centraliza a lista de cards
+  .lista-interesses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    justify-content: center; // 👈 Centraliza os cards horizontalmente
+    padding: 0 1rem; // Ajusta padding para evitar encostar nas bordas
+  }
+
+  .mensagem-vazia {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #777;
+    font-size: 1.2rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .erro {
+    text-align: center;
+    padding: 2rem;
+    color: #e74c3c;
+    font-weight: 600;
+    background: #fff5f5;
+    border-radius: 12px;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .carregando {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: $cor-primaria;
+  }
+}
+
+// Responsivo
+@media (max-width: 576px) {
+  .pagina-meus-interesses {
+    padding: 1.5rem 0.5rem;
+
+    .cabecalho h2 {
+      font-size: 1.8rem;
+    }
+
+    .lista-interesses {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+}

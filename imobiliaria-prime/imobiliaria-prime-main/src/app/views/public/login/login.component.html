@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="text-center mb-4">
+      <h2 class="titulo-principal">Imobiliária Prime</h2>
+      <p class="subtitulo">Conectando você ao seu próximo lar 🏡</p>
+    </div>
+
+    <form (ngSubmit)="onLogin ()" class="login-form">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          required
+          placeholder="exemplo@email.com"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="senha" class="form-label">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          class="form-control"
+          [(ngModel)]="senha"
+          name="senha"
+          required
+          placeholder="••••••••"
+        />
+      </div>
+      <button type="submit" class="btn btn-principal w-100 py-2">Entrar</button>
+    </form>
+
+    <div class="text-center mt-4">
+      <p class="texto-cinza">
+        Novo por aqui? <a routerLink="/registro" class="link-registro">Crie sua conta</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container-fluid p-0"> <!-- 👈 Adicionado container-fluid -->
+  <div class="dashboard-container">
+    <h3>Dashboard do Corretor - Meus Imóveis</h3>
+
+    <button class="btn-novo-imovel" (click)="novoImovel()">➕ Novo Imóvel</button>
+
+    <!-- Formulário de criação/edição -->
+    <div *ngIf="exibindoForm" class="card-form">
+      <h4>{{ imovelEditando.id ? 'Editar Imóvel' : 'Cadastrar Novo Imóvel' }}</h4>
+
+      <form #imovelForm="ngForm" (ngSubmit)="salvarImovel()">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título</label>
+          <input type="text" class="form-control" id="titulo" [(ngModel)]="imovelEditando.titulo" name="titulo" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="tipo" class="form-label">Tipo</label>
+          <input type="text" class="form-control" id="tipo" [(ngModel)]="imovelEditando.tipo" name="tipo" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input type="text" class="form-control" id="cidade" [(ngModel)]="imovelEditando.cidade" name="cidade" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="preco" class="form-label">Preço</label>
+          <input type="number" class="form-control" id="preco" [(ngModel)]="imovelEditando.preco" name="preco" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea class="form-control" id="descricao" [(ngModel)]="imovelEditando.descricao" name="descricao"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="imagemUrl" class="form-label">URL da Imagem</label>
+          <input type="text" class="form-control" id="imagemUrl" [(ngModel)]="imovelEditando.imagemUrl" name="imagemUrl">
+        </div>
+
+        <button type="submit" class="btn-salvar" [disabled]="!imovelForm.form.valid">
+          {{ imovelEditando.id ? 'Atualizar' : 'Salvar' }}
+        </button>
+
+        <button type="button" class="btn-cancelar" (click)="cancelarForm()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Lista de imóveis -->
+    <div class="lista-imoveis">
+      <div class="card-imovel" *ngFor="let imovel of imoveis">
+        <img [src]="imovel.imagemUrl || 'https://via.placeholder.com/300x200'" class="card-img-top" [alt]="imovel.titulo">
+        <div class="card-body">
+          <h5 class="card-title">{{ imovel.titulo }}</h5>
+          <p class="card-text">{{ imovel.descricao }}</p>
+          <p><strong> {{ imovel.preco | currency:'BRL':'symbol' }}</strong></p>
+          <button class="btn-editar" (click)="editarImovel(imovel)">✏️ Editar</button>
+          <button class="btn-excluir" (click)="deletarImovel(imovel.id)">🗑️ Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

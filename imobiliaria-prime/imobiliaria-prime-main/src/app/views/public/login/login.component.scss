@@ -1,0 +1,130 @@
+@import 'src/styles.scss';
+
+// Garante que o container de login ocupe toda a largura da viewport
+.login-container {
+  // Usa 100dvh para melhor compatibilidade em mobile
+  min-height: 100dvh;
+  min-height: 100vh; // fallback
+  width: 100vw; // 👈 Força largura total da janela
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  padding: 1rem;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden; // Evita scroll horizontal
+
+  // Garante que o fundo cubra toda a área mesmo com posicionamento
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease;
+    text-align: center;
+
+    .titulo-principal {
+      color: $cor-primaria;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitulo {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: $cor-secundaria;
+      margin-bottom: 1px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+      width: 100%;
+      text-align: left;
+
+      &:focus {
+        border-color: $cor-primaria;
+        box-shadow: 0 0 0 3px rgba(0, 155, 119, 0.1);
+      }
+    }
+
+    .btn-principal {
+      background-color: $cor-primaria;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      transition: all 0.3s;
+      padding: 0.8rem;
+      margin-top: 1rem;
+
+      &:hover {
+        background-color: darken($cor-primaria, 10%);
+        transform: translateY(-2px);
+      }
+    }
+
+    .link-registro {
+      color: $cor-primaria;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .texto-cinza {
+      color: #666;
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsivo
+@media (max-width: 576px) {
+  .login-container {
+    padding: 0.5rem;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+}

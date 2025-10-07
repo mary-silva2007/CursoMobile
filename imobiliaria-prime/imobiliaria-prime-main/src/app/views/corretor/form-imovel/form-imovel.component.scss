@@ -1,0 +1,96 @@
+// src/app/views/corretor/form-imovel/form-imovel.component.scss
+@import 'src/styles.scss';
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $cor-secundaria;
+    font-size: 1.8rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: $cor-primaria;
+        box-shadow: 0 0 0 3px rgba(0, 155, 119, 0.1);
+      }
+    }
+
+    .dica-imagem {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  }
+
+  .botoes-form {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+
+    .btn-cancelar {
+      background-color: #f8f9fa;
+      color: #555;
+
+      &:hover:not(:disabled) {
+        background-color: #e9ecef;
+      }
+    }
+
+    .btn-salvar {
+      background-color: $cor-primaria;
+      color: white;
+
+      &:hover:not(:disabled) {
+        background-color: darken($cor-primaria, 10%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

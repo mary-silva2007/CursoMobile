@@ -1,0 +1,143 @@
+@import 'src/styles.scss';
+
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  margin-bottom: 3rem;
+
+  .display-5 {
+    font-weight: 700;
+  }
+
+  .btn-hero {
+    background-color: $cor-primaria;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: darken($cor-primaria, 10%);
+      transform: scale(1.05);
+    }
+  }
+}
+
+.pagina-home {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  // 👇 Centraliza título e subtítulo
+  .cabecalho {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: $cor-secundaria;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  // 👇 Centraliza a lista de cards
+  .lista-imoveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    justify-content: center; // 👈 Centraliza os cards horizontalmente
+    padding: 0 1rem; // Ajusta padding para evitar encostar nas bordas
+  }
+
+  .mensagem-vazia {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #777;
+    font-size: 1.2rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .erro {
+    text-align: center;
+    padding: 2rem;
+    color: #e74c3c;
+    font-weight: 600;
+    background: #fff5f5;
+    border-radius: 12px;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .carregando {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: $cor-primaria;
+  }
+}
+
+.call-to-action {
+  .btn-success {
+    background-color: $cor-primaria;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: darken($cor-primaria, 10%);
+    }
+  }
+
+  .btn-outline-success {
+    color: $cor-primaria;
+    border-color: $cor-primaria;
+    border-radius: 8px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $cor-primaria;
+      color: white;
+    }
+  }
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .hero-section .display-5 {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+
+  .pagina-home {
+    padding: 1.5rem 0.5rem;
+
+    .cabecalho h2 {
+      font-size: 1.8rem;
+    }
+
+    .lista-imoveis {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+}

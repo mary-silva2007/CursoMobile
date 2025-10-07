@@ -1,0 +1,43 @@
+@import 'src/styles.scss';
+
+.footer {
+  background-color: $cor-secundaria;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2rem 0;
+  margin-top: 3rem;
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    font-size: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $cor-primaria;
+      transform: translateY(-3px);
+    }
+  }
+}

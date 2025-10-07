@@ -1,0 +1,55 @@
+<!-- header.component.html -->
+<header class="navbar">
+  <div class="container">
+    <a routerLink="/" class="logo-text">Imobiliária Prime</a>
+
+    <!-- Navegação principal: tudo em linha, SEM .collapse -->
+    <nav class="navbar-nav">
+      <!-- Links condicionais -->
+      <a
+        *ngIf="!authService.isAuthenticated()"
+        class="nav-link"
+        routerLink="/home"
+        routerLinkActive="active"
+      >
+       Hotéis
+      </a>
+
+      <a
+        *ngIf="authService.isAuthenticated() && authService.getPerfilUsuario() === 'cliente'"
+        class="nav-link"
+        routerLink="/cliente/meus-interesses"
+        routerLinkActive="active"
+      >
+        Meus Interesses
+      </a>
+
+      <a
+        *ngIf="authService.isAuthenticated() && authService.getPerfilUsuario() === 'corretor'"
+        class="nav-link"
+        routerLink="/corretor/dashboard"
+        routerLinkActive="active"
+      >
+        Dashboard
+      </a>
+
+      <!-- Login / Logout -->
+      <a
+        *ngIf="!authService.isAuthenticated()"
+        class="nav-link"
+        routerLink="/login"
+      >
+        Login
+      </a>
+
+      <a
+        *ngIf="authService.isAuthenticated()"
+        class="nav-link sair-link"
+        (click)="logout()"
+        style="cursor: pointer;"
+      >
+        Sair
+      </a>
+    </nav>
+  </div>
+</header>

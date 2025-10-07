@@ -1,0 +1,108 @@
+// src/app/views/public/detalhes-imovel/detalhes-imovel.component.scss
+.pagina-detalhes {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.carregando, .erro {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.erro {
+  color: #e74c3c;
+}
+
+.container-detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.imagem-container {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+
+  .imagem-principal {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .tipo-imovel {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #28a745; // ou sua $cor-primaria
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+}
+
+.info-container {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem;
+
+  .titulo {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .localizacao {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+
+    i {
+      color: #28a745;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .descricao {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .preco {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #28a745;
+    margin-bottom: 2rem;
+  }
+}
+
+.btn-voltar {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-detalhes {
+    flex-direction: column;
+  }
+}

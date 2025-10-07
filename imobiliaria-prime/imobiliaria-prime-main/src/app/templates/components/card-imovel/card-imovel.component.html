@@ -1,0 +1,56 @@
+<div class="container-cards">
+  <div class="card-imovel">
+    <div class="imagem-container">
+      <img
+        [src]="
+          imovel?.imagemUrl ||
+          'https://via.placeholder.com/300x200?text=Sem+Imagem'
+        "
+        [alt]="imovel?.titulo || 'Imóvel sem título'"
+        class="imagem"
+      />
+      <div class="tipo-imovel">{{ imovel?.tipo || "Não informado" }}</div>
+    </div>
+
+    <div class="corpo-card">
+      <h3 class="titulo">{{ imovel?.titulo || "Sem título" }}</h3>
+      <p class="localizacao">
+        <i class="fas fa-map-marker-alt"></i>
+        {{ imovel?.cidade || "Cidade não informada" }}
+      </p>
+      <p class="descricao">
+        {{ imovel?.descricao || "Sem descrição disponível." }}
+      </p>
+      <div class="preco">
+        {{ imovel?.preco || 0 | currency : "BRL" : "symbol" }}
+      </div>
+
+      <div class="botoes">
+        <button class="btn btn-detalhes" (click)="verDetalhes()">
+          <i class="fas fa-eye"></i> Ver Detalhes
+        </button>
+
+        <!-- Botão de interesse (fora do modo gerenciamento) -->
+        <button
+          *ngIf="!modoGerenciamento && deveMostrarBotaoInteresse"
+          class="btn btn-interesse"
+          [class.interessado]="jaTemInteresse"
+          (click)="alternarInteresse()"
+          [disabled]="carregandoInteresse"
+        >
+          <i class="fas fa-heart"></i>
+          {{ jaTemInteresse ? "Interesse Registrado" : "Tenho Interesse" }}
+        </button>
+
+        <!-- Botão de remover (só no modo gerenciamento) -->
+        <button
+          *ngIf="modoGerenciamento && deveMostrarBotaoInteresse"
+          class="btn btn-remover"
+          (click)="removerInteresse()"
+        >
+          <i class="fas fa-trash"></i> Remover Interesse
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

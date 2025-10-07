@@ -1,0 +1,28 @@
+<div class="pagina-meus-interesses">
+  <div class="cabecalho">
+    <h2>Meus Imóveis de Interesse</h2>
+    <p>Imóveis que você marcou para acompanhar</p>
+  </div>
+
+  <div *ngIf="carregando" class="carregando">
+    Carregando sua lista de interesses...
+  </div>
+
+  <div *ngIf="erro" class="erro">
+    {{ erro }}
+  </div>
+
+  <div *ngIf="!carregando && imoveisInteresse.length === 0 && !erro" class="mensagem-vazia">
+    Você ainda não marcou interesse em nenhum imóvel.<br>
+    Navegue pelos imóveis e clique em <strong>"Tenho Interesse"</strong> para salvá-los aqui.
+  </div>
+
+  <div class="lista-interesses">
+    <app-card-imovel
+      *ngFor="let imovel of imoveisInteresse; trackBy: trackByImovel"
+      [imovel]="imovel"
+      [modoGerenciamento]="true"
+      (aoRemoverInteresse)="removerInteresse($event)"
+    ></app-card-imovel>
+  </div>
+</div>

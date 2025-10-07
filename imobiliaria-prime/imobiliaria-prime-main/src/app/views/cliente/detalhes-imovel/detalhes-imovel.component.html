@@ -1,0 +1,33 @@
+<!-- src/app/views/public/detalhes-imovel/detalhes-imovel.component.html -->
+<div class="pagina-detalhes" *ngIf="!carregando">
+  <div *ngIf="erro" class="erro">
+    <p>{{ erro }}</p>
+    <button (click)="voltar()" class="btn-voltar">← Voltar</button>
+  </div>
+
+  <div *ngIf="imovel" class="container-detalhes">
+    <div class="imagem-container">
+      <img 
+        [src]="imovel.imagemUrl || 'https://via.placeholder.com/600x400?text=Sem+Imagem'" 
+        [alt]="imovel.titulo"
+        class="imagem-principal"
+      />
+      <span class="tipo-imovel">{{ imovel.tipo }}</span>
+    </div>
+
+    <div class="info-container">
+      <h1 class="titulo">{{ imovel.titulo }}</h1>
+      <p class="localizacao">
+        <i class="fas fa-map-marker-alt"></i> {{ imovel.cidade }}
+      </p>
+      <p class="descricao">{{ imovel.descricao }}</p>
+      <div class="preco">Preço: {{ imovel.preco | currency:'BRL':'symbol' }}</div>
+
+      <button (click)="voltar()" class="btn-voltar">← Voltar para a Página Anterior</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="carregando" class="carregando">
+  Carregando detalhes do imóvel...
+</div>
