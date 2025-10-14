@@ -1,0 +1,22 @@
+name: sa_geolocator_maps
+description: Projeto Flutter para adicionar fotos com localização e data/hora.
+publish_to: 'none'
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  image_picker: ^1.1.2
+  geolocator: ^10.0.1
+  geocoding: ^3.0.0
+  path_provider: ^2.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
